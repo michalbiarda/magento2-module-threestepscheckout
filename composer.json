@@ -1,0 +1,16 @@
+{
+  "name": "michalbiarda/magento2-module-threestepscheckout",
+  "require": {
+    "php": "~7.2.0"
+  },
+  "type": "magento2-module",
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "MB\\ThreeStepsCheckout\\": ""
+    }
+  },
+  "license": "THE BEER-WARE LICENSE"
+}
