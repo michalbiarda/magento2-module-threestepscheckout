@@ -1,3 +1,8 @@
+/**
+ * Copyright © Michał Biarda. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+
 var config = {
     config: {
         mixins: {

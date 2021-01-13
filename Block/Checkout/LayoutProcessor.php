@@ -1,12 +1,17 @@
 <?php
 
-namespace MB\ThreeStepsCheckout\Plugin;
+/**
+ * Copyright © Michał Biarda. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
 
-use Magento\Checkout\Block\Checkout\LayoutProcessor;
+namespace MB\ThreeStepsCheckout\Block\Checkout;
+
+use Magento\Checkout\Block\Checkout\LayoutProcessorInterface;
 use Magento\Checkout\Helper\Data;
 use Magento\Framework\Exception\ConfigurationMismatchException;
 
-class CustomizeCheckoutLayout
+class LayoutProcessor implements LayoutProcessorInterface
 {
     /**
      * @var Data
@@ -18,7 +23,7 @@ class CustomizeCheckoutLayout
         $this->checkoutDataHelper = $checkoutDataHelper;
     }
 
-    public function afterProcess(LayoutProcessor $subject, array $jsLayout)
+    public function process($jsLayout): array
     {
         $jsLayout = $this->customizeSharedBillingAddress($jsLayout);
         $jsLayout = $this->addBillingInfoToSidebar($jsLayout);

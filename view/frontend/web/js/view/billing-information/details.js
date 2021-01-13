@@ -1,3 +1,8 @@
+/**
+ * Copyright © Michał Biarda. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+
 define([
     'ko',
     'Magento_Checkout/js/view/shipping-information/address-renderer/default',

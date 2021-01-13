@@ -1,3 +1,8 @@
+/**
+ * Copyright © Michał Biarda. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+
 define([
     'jquery',
     'ko',
@@ -24,7 +29,7 @@ define([
         defaults: {
             template: 'MB_ThreeStepsCheckout/finalization'
         },
-        isVisible: ko.observable(true),
+        isVisible: ko.observable(false),
         errorValidationMessage: ko.observable(false),
         initialize: function () {
             this._super();

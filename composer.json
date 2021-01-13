@@ -1,7 +1,14 @@
 {
   "name": "michalbiarda/magento2-module-threestepscheckout",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "email": "m.biarda@gmail.com",
+      "name": "Michał Biarda"
+    }
+  ],
   "require": {
-    "php": "~7.2.0||~7.3.0"
+    "php": "~7.2.0||~7.3.0||~7.4.0"
   },
   "type": "magento2-module",
   "autoload": {
@@ -12,5 +19,5 @@
       "MB\\ThreeStepsCheckout\\": ""
     }
   },
-  "license": "THE BEER-WARE LICENSE"
+  "license": "Beerware"
 }

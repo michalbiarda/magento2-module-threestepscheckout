@@ -14,3 +14,8 @@ Due to the fact that "Place order" button is hardcoded in each payment method's 
 * Magento_OfflinePayments: Checkmo
 
 If you need to use other methods, you must overwrite them by your own.
+
+## Magento versions supported
+
+* 2.3.x
+* 2.4.x

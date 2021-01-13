@@ -1,3 +1,8 @@
+/**
+ * Copyright © Michał Biarda. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+
 define([
     'jquery',
     'ko',
@@ -6,8 +11,19 @@ define([
     'Magento_Checkout/js/model/payment-service',
     'Magento_Checkout/js/model/quote',
     'Magento_Checkout/js/model/step-navigator',
-    'Magento_Checkout/js/model/sidebar'
-], function ($, ko, Component, registry, paymentService, quote, stepNavigator, sidebarModel) {
+    'Magento_Checkout/js/model/sidebar',
+    'Magento_Checkout/js/model/payment/method-list'
+], function (
+    $,
+    ko,
+    Component,
+    registry,
+    paymentService,
+    quote,
+    stepNavigator,
+    sidebarModel,
+    paymentMethodList
+) {
     'use strict';
 
     return Component.extend({
@@ -18,16 +34,23 @@ define([
         initialize: function() {
             this._super();
             var self = this;
-            quote.paymentMethod.subscribe(function(quotePaymentMethod) {
-                var selectedPaymentMethod = paymentService.getAvailablePaymentMethods().find(function(paymentMethod) {
-                    return paymentMethod.method === quotePaymentMethod.method;
-                })
-                if (selectedPaymentMethod) {
-                    self.paymentMethodTitle(selectedPaymentMethod.title);
-                } else {
-                    self.paymentMethodTitle('');
+            quote.paymentMethod.subscribe(this.setPaymentMethodTitle.bind(this));
+            paymentMethodList.subscribe(function (methodList) {
+                self.setPaymentMethodTitle(quote.paymentMethod());
+            })
+        },
+
+        setPaymentMethodTitle: function (paymentMethod) {
+            var selectedPaymentMethod = paymentService.getAvailablePaymentMethods().find(
+                function(availablePaymentMethod) {
+                    return availablePaymentMethod.method === paymentMethod.method;
                 }
-            });
+            );
+            if (selectedPaymentMethod) {
+                this.paymentMethodTitle(selectedPaymentMethod.title);
+            } else {
+                this.paymentMethodTitle('');
+            }
         },
 
         /**
