@@ -36,14 +36,21 @@ define([
             var self = this;
             quote.paymentMethod.subscribe(this.setPaymentMethodTitle.bind(this));
             paymentMethodList.subscribe(function (methodList) {
-                self.setPaymentMethodTitle(quote.paymentMethod());
+                if (quote.paymentMethod()) {
+                    self.setPaymentMethodTitle(quote.paymentMethod());
+                }
             })
         },
 
         setPaymentMethodTitle: function (paymentMethod) {
             var selectedPaymentMethod = paymentService.getAvailablePaymentMethods().find(
                 function(availablePaymentMethod) {
-                    return availablePaymentMethod.method === paymentMethod.method;
+                    var method = paymentMethod.method;
+                    // Braintree CC Vault fix
+                    if (method.indexOf('braintree_cc_vault') === 0) {
+                        method = 'braintree_cc_vault';
+                    }
+                    return availablePaymentMethod.method === method;
                 }
             );
             if (selectedPaymentMethod) {

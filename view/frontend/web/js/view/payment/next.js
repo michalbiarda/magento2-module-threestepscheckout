@@ -13,7 +13,8 @@ define([
     'Magento_Checkout/js/model/step-navigator',
     'Magento_Customer/js/model/customer',
     'Magento_Ui/js/model/messageList',
-    'mage/translate'
+    'mage/translate',
+    'MB_ThreeStepsCheckout/js/model/payment-validator-list'
 ],function (
     Component,
     ko,
@@ -24,7 +25,8 @@ define([
     stepNavigator,
     customer,
     globalMessageList,
-    $t
+    $t,
+    paymentValidatorList
 ) {
     'use strict';
 
@@ -40,12 +42,21 @@ define([
         }
     }
 
+    function validatePayment(paymentComponent) {
+        if (typeof paymentValidatorList[paymentComponent.getCode()] === 'undefined') {
+            return true;
+        }
+        return paymentValidatorList[paymentComponent.getCode()](paymentComponent);
+    }
+
     function afterBillingAddressSet() {
         var selectedPaymentMethodComponent = getSelectedPaymentMethodComponent();
         if (selectedPaymentMethodComponent) {
-            setPaymentInformation(globalMessageList, selectedPaymentMethodComponent.getData()).done(function() {
-                stepNavigator.next();
-            });
+            if (validatePayment(selectedPaymentMethodComponent)) {
+                setPaymentInformation(globalMessageList, selectedPaymentMethodComponent.getData()).done(function() {
+                    stepNavigator.next();
+                });
+            }
         }
     }
 

@@ -10,7 +10,8 @@
     <type name="Magento\Checkout\Block\Onepage">
         <arguments>
             <argument name="layoutProcessors" xsi:type="array">
-                <item name="mb-threestepscheckout" xsi:type="object">MB\ThreeStepsCheckout\Block\Checkout\LayoutProcessor</item>
+                <item name="mb-threestepscheckout"
+                      xsi:type="object">MB\ThreeStepsCheckout\Block\Checkout\LayoutProcessor</item>
             </argument>
         </arguments>
     </type>

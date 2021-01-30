@@ -8,6 +8,15 @@
 //  _____________________________________________
 
 & when (@media-common = true) {
+  #checkout-payment-method-load {
+    .payment-method {
+      .checkout-agreements-block,
+      .actions-toolbar {
+        &:extend(.abs-visually-hidden all);
+        display: none !important;
+      }
+    }
+  }
   .checkout-payment-method .actions-toolbar .action.primary,
   #checkout-step-finalization .actions-toolbar .action.primary {
     &:extend(.abs-button-l all);

@@ -18,11 +18,8 @@ var config = {
             'Magento_Checkout/js/model/step-navigator': {
                 'MB_ThreeStepsCheckout/js/model/step-navigator-mixin': true
             },
-            'Magento_OfflinePayments/js/view/payment/method-renderer/banktransfer-method': {
-                'MB_ThreeStepsCheckout/js/view/payment/method-renderer/banktransfer-method-mixin': true
-            },
-            'Magento_OfflinePayments/js/view/payment/method-renderer/checkmo-method': {
-                'MB_ThreeStepsCheckout/js/view/payment/method-renderer/checkmo-method-mixin': true
+            'Magento_Checkout/js/model/error-processor': {
+                'MB_ThreeStepsCheckout/js/model/error-processor-mixin': true
             }
         }
     },
