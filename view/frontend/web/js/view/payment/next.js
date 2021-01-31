@@ -84,7 +84,7 @@ define([
                 );
                 return false;
             }
-            if (!quote.paymentMethod()) {
+            if (!quote.paymentMethod() || !$('#' + quote.paymentMethod().method).is(":checked")) {
                 this.errorValidationMessage(
                     $t('The payment method is missing. Select the payment method and try again.')
                 );
