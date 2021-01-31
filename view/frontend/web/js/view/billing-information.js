@@ -8,6 +8,7 @@ define([
     'ko',
     'uiComponent',
     'uiRegistry',
+    'mage/translate',
     'Magento_Checkout/js/model/payment-service',
     'Magento_Checkout/js/model/quote',
     'Magento_Checkout/js/model/step-navigator',
@@ -18,6 +19,7 @@ define([
     ko,
     Component,
     registry,
+    $t,
     paymentService,
     quote,
     stepNavigator,
@@ -36,21 +38,28 @@ define([
             var self = this;
             quote.paymentMethod.subscribe(this.setPaymentMethodTitle.bind(this));
             paymentMethodList.subscribe(function (methodList) {
-                if (quote.paymentMethod()) {
-                    self.setPaymentMethodTitle(quote.paymentMethod());
-                }
+                self.setPaymentMethodTitle(quote.paymentMethod());
             })
         },
 
         setPaymentMethodTitle: function (paymentMethod) {
+            if (!paymentMethod) {
+                this.paymentMethodTitle('');
+                return;
+            }
+            if (paymentMethod.method.indexOf('braintree_cc_vault_') === 0) {
+                // Fix for "fake" Braintree CC Vault methods
+                var details = window.checkoutConfig.payment.vault[paymentMethod.method].config.details;
+                this.paymentMethodTitle(
+                    $t('Saved Credit Card') +
+                    '<br />' + $t('ending') + ' ' + details.maskedCC +
+                    ', ' + $t('expires') + ' ' + details.expirationDate
+                );
+                return;
+            }
             var selectedPaymentMethod = paymentService.getAvailablePaymentMethods().find(
                 function(availablePaymentMethod) {
-                    var method = paymentMethod.method;
-                    // Braintree CC Vault fix
-                    if (method.indexOf('braintree_cc_vault') === 0) {
-                        method = 'braintree_cc_vault';
-                    }
-                    return availablePaymentMethod.method === method;
+                    return availablePaymentMethod.method === paymentMethod.method;
                 }
             );
             if (selectedPaymentMethod) {

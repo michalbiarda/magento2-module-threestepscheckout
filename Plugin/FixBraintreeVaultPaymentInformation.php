@@ -11,7 +11,7 @@ use Magento\Checkout\Api\PaymentInformationManagementInterface;
 use Magento\Quote\Api\Data\AddressInterface;
 use Magento\Quote\Api\Data\PaymentInterface;
 
-class FixBraintreeVaultPaymentSave
+class FixBraintreeVaultPaymentInformation
 {
     public function beforeSavePaymentInformation(
         PaymentInformationManagementInterface $subject,

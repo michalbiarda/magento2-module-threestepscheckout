@@ -12,7 +12,8 @@ define([
 
     return Component.extend({
         defaults: {
-            template: 'MB_ThreeStepsCheckout/billing-information/details'
+            template: 'MB_ThreeStepsCheckout/billing-information/details',
+            provider: 'checkoutProvider'
         },
         address: ko.observable(null),
         initialize: function() {

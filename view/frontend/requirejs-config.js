@@ -9,12 +9,6 @@ var config = {
             'Magento_Checkout/js/view/payment': {
                 'MB_ThreeStepsCheckout/js/view/payment-mixin': true
             },
-            'Magento_Checkout/js/view/billing-address': {
-                'MB_ThreeStepsCheckout/js/view/billing-address-mixin': true
-            },
-            'Magento_Checkout/js/view/billing-address/list': {
-                'MB_ThreeStepsCheckout/js/view/billing-address/list-mixin': true
-            },
             'Magento_Checkout/js/model/step-navigator': {
                 'MB_ThreeStepsCheckout/js/model/step-navigator-mixin': true
             },

@@ -8,7 +8,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <type name="Magento\Checkout\Api\PaymentInformationManagementInterface">
-        <plugin name="mb-threestepscheckout-fix-braintree-vault-payment-save"
-                type="MB\ThreeStepsCheckout\Plugin\FixBraintreeVaultPaymentSave" />
+        <plugin name="mb-threestepscheckout-fix-braintree-vault-payment-information"
+                type="MB\ThreeStepsCheckout\Plugin\FixBraintreeVaultPaymentInformation" />
     </type>
 </config>
