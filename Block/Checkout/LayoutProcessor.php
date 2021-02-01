@@ -94,7 +94,9 @@ class LayoutProcessor implements LayoutProcessorInterface
             'children' => [
                 'bill-to' => [
                     'component' => 'MB_ThreeStepsCheckout/js/view/billing-information/details',
-                    'displayArea' => 'bill-to'
+                    'displayArea' => 'bill-to',
+                    'provider' => 'checkoutProvider',
+                    'deps' => 'checkoutProvider'
                 ]
             ]
         ];
